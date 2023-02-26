@@ -1,0 +1,5 @@
+set NODE_OPTIONS=--openssl-legacy-provider
+
+npm run dev
+
+ADMIN: 0xDa830B4dC7A33789838f8926ee39e4F8F433c0d4

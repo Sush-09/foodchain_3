@@ -1,0 +1,1073 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ConsumerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ConsumerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "DistributorAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "DistributorRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "FarmerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "FarmerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ForSaleByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ForSaleByFarmer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ForSaleByRetailer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ManufacturerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ManufacturerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "PackagedByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ProcessedByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ProduceByFarmer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "PurchasedByConsumer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "PurchasedByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "PurchasedByRetailer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ReceivedByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ReceivedByRetailer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "RetailerAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "RetailerRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ShippedByDistributor",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "ShippedByFarmer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addConsumer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addFarmer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addManufacturer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "addRetailer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "fetchItemBufferOne",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "itemstockUnit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "itemproductCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "ownerID",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "originFarmerID",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "originFarmName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "originFarmInformation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "originFarmLatitude",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "originFarmLongitude",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productSliced",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "fetchItemBufferTwo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "itemstockUnit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "itemproductCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "productNotes",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum SupplyChain.State",
+						"name": "itemState",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "distributorID",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "retailerID",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "consumerID",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "fetchitemHistory",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "blockfarmerToDistributor",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockDistributorToRetailer",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockRetailerToConsumer",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isConsumer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isDistributor",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isFarmer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isManufacturer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "isRetailer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "kill",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ownerLookup",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "packageItemByDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "no_of_lots",
+						"type": "uint256"
+					}
+				],
+				"name": "processedItemByDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_originFarmName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_originFarmInformation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_originFarmLatitude",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_originFarmLongitude",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_productNotes",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "produceItemByFarmer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "purchaseItemByConsumer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "purchaseItemByDistributor",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "purchaseItemByRetailer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "receivedItemByDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "receivedItemByRetailer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "renounceConsumer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceFarmer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceManufacturer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceRetailer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "sellItemByDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "sellItemByFarmer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "sellItemByRetailer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "shippedItemByDistributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productCode",
+						"type": "uint256"
+					}
+				],
+				"name": "shippedItemByFarmer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"ownerLookup()": {
+					"notice": "Look up the address of the owner"
+				},
+				"renounceOwnership()": {
+					"notice": "Define a function to renounce ownerhip"
+				},
+				"transferOwnership(address)": {
+					"notice": "Define a public function to transfer ownership"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"supplyChain/SupplyChain.sol": "SupplyChain"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"access/ConsumerRole.sol": {
+			"keccak256": "0xee277bfeb2aa1d78592881fce80acad3c92fbdd9c120bf72eda0e61a465c315f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b5ab50f9144d44f35df8839e26f17bafcd8a86feb41bd2010ca4a4476aa12b11",
+				"dweb:/ipfs/QmS5dK54mHpA5Xp9f4Jy3mQfV2c1pSvDAXAb38KGAF4Awg"
+			]
+		},
+		"access/DistributorRole.sol": {
+			"keccak256": "0x6a4ef347226df8f47fd58c2a19343bffaf882de6c800f599bc7e8053f05d7d50",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a0b9ec86f12f13eae62c34cf00c6830a4f51240f9c8167aa601552e16cce186",
+				"dweb:/ipfs/QmUKwoDMj4fV3YfEMGsCxntmzFVgX3NcYNRM68LSGupbGE"
+			]
+		},
+		"access/FarmerRole.sol": {
+			"keccak256": "0x3cf29f1e14a507e7bae7f37875d8e87b89f3853c342be195d610f442288ac68d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://eec0b39bac8b01e2ce6d5e623b057e447a411ecd095109497d3078164f3f915c",
+				"dweb:/ipfs/QmVVY8jUmfJXziF7H5coVGUL64hUNAXFnRU8WG6PLenyhu"
+			]
+		},
+		"access/ManufacturerRole.sol": {
+			"keccak256": "0x8a09d373dcc7b8894ab815b9c6ff291f0621f2cea090cf7a7f785fca28303c90",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://75df4b1b41bd8ee2c7d9bb14a5d058e1ff5365762b6e9869e13a3c34fd9d793a",
+				"dweb:/ipfs/QmZbLshPTEZtRC2VYvzoz72WKz8qTCwfmtRatyBDZyQPWC"
+			]
+		},
+		"access/RetailerRole.sol": {
+			"keccak256": "0xbc7982431ec3d4f85565b9d43989b340af3d8fbafb70375d694d3d15d31177fa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://834a35d76f897cf8f8ea0ccf5148babfd431fa5a97838de2850a2021646e535b",
+				"dweb:/ipfs/QmbXjABuYD72d2krsJ6TFNzZTdWxZmwqJtn351QvFGzheZ"
+			]
+		},
+		"access/Roles.sol": {
+			"keccak256": "0x2319ad4979af23db4ef914ffaa06a7eff7d3753db226da5bffdfd6e5a094750d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e00d7727b7a325dfb1fb9f9333e693f36024905d863a3e13b157fa1c13173cad",
+				"dweb:/ipfs/QmTe4ViFWPtwyfp6yG3FRWdf3DRb8kFMxQMaEeBidx5amq"
+			]
+		},
+		"ownership/Ownable.sol": {
+			"keccak256": "0xeb765edf716eb1f2f1deb0acbfff3e8c5141c06e3665f6d498130f1b9879e479",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://41ecec0fc3466f325c44af6a65278884797c12a36f5a78047ff7c70d8ad4f8e4",
+				"dweb:/ipfs/QmRrjVYA4DbWzsdRYqM8ccwwThCMGrJ31B7SArRj3Bx2Zm"
+			]
+		},
+		"supplyChain/SupplyChain.sol": {
+			"keccak256": "0xb85590035f0f9fef21dd3582e234cc76aaabdfa3b340ead1c8fd0c70186ad2a1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://24595696e2f594db13012a31186d435c45c325108be01e0062015c1dcaa9ec95",
+				"dweb:/ipfs/Qmc6aPCcQ3ZcyaQruGR5SJAeMk5Ph4Hc4CHzbHtqx4fNxa"
+			]
+		},
+		"utils/Context.sol": {
+			"keccak256": "0x851c3d8e30ea37c35947f620812e2e18718ac9312ef8d84b643fc46d94269540",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c02fec97a236e7eda6646bb8aef30a00f134710ffc29f1965c27dc257cc58a3",
+				"dweb:/ipfs/QmNoqNHYS9HP9u8J3bG5kVztMNcQ42kYiiiKDN8tY94gvY"
+			]
+		}
+	},
+	"version": 1
+}
