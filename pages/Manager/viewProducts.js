@@ -5,6 +5,7 @@ import Layout from '../../components/Layout';
 import { Link, Router } from "../../routes";
 
 class ProductList extends Component {
+  
     static async getInitialProps(props) {
       const address = props.query.address;
       const states = ["ProduceByFarmer","RequestByManufacturer","AcceptRequestByFarmer","RejectRequestByFarmer",
@@ -26,6 +27,7 @@ class ProductList extends Component {
       return { address, products, product_length, states };
     }
     renderItems() {
+      
       const product_data = this.props.products.filter((product) => {
         if (product.originManufacturerID== this.props.address){
           return product;
@@ -35,8 +37,8 @@ class ProductList extends Component {
       const product_card = product_data.map((product) => {
         return {
             header: product.productName,
-            description: "Rs."+ product.pricePerUnit+" per Kg " ,
-            meta: "Available: "+product.quantityAvailable+" Kg",
+            description: "Rs."+ product.pricePerUnit+" per unit " ,
+            meta: "Quantity: "+product.quantity+" units",
             fluid: true
           };
       });

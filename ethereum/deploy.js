@@ -15,13 +15,20 @@ const deploy = async () => {
 
   console.log('Attempting to deploy from account', accounts[0]);
 
+  try{
+    console.log("deploying.....");
   const result = await new web3.eth.Contract(
     JSON.parse(compiledFSC.interface)
   )
     .deploy({ data: compiledFSC.bytecode })
-    .send({ gas: '5000000', from: accounts[0] });
+    .send({ gas: '0x4C4B40',gasPrice: '0x4A817C800', from: accounts[0] });
 
   console.log('Contract deployed to', result.options.address);
+  } catch(err){
+    console.log(err);
+  }
+
+
   provider.engine.stop();
 };
 deploy();

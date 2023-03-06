@@ -9,7 +9,8 @@ import {Link} from '../../routes';
 class SignUp extends Component {
     state = {
       address: "",
-      name: "",
+      name:"",
+      location: "",
       errorMessage: "",
       loading: false,
     };
@@ -21,12 +22,13 @@ class SignUp extends Component {
       try {
         const accounts = await web3.eth.getAccounts();
         const val = await factory.methods
-          .addFarmer(this.state.address, this.state.name)
+          .addDistributer(this.state.address,this.state.name,this.state.location)
           .send({
             from: accounts[0],
           });
+
           
-            Router.pushRoute("/");
+        Router.pushRoute("/");
          
          } catch (err) {
         this.setState({ errorMessage: err.message });
@@ -40,7 +42,7 @@ class SignUp extends Component {
           <h3>SignUp</h3>
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
             <Form.Field>
-              <label>Farmer's Address</label>
+              <label>Distributer's Address</label>
               <Input
                 value={this.state.address}
                 onChange={(event) =>
@@ -48,18 +50,27 @@ class SignUp extends Component {
                 }
               />
             </Form.Field>
-
             <Form.Field>
-              <label>Farmer's Name</label>
+              <label>Diatributer's Name</label>
               <Input
                 value={this.state.name}
                 onChange={(event) =>
                   this.setState({ name: event.target.value })
                 }
               />
-
             </Form.Field>
-            < Message error header="Oops!" content={this.state.errorMessage} />
+
+            <Form.Field>
+              <label>Location</label>
+              <Input
+                value={this.state.location}
+                onChange={(event) =>
+                  this.setState({ location: event.target.value })
+                }
+              />
+            </Form.Field>
+
+            <Message error header="Oops!" content={this.state.errorMessage} />
             <Button loading={this.state.loading} primary>
               Sign Up!
             </Button>

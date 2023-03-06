@@ -106,7 +106,7 @@ class AddFinalProduct extends Component{
                 <Form.Field>
                     <label>Quantity</label>
                     <Input
-                    label="Kg"
+                    label="units"
                     labelPosition="right"
                     value={this.state.quantity}
                     onChange={(event) => this.setState({ quantity: event.target.value })}
@@ -115,7 +115,7 @@ class AddFinalProduct extends Component{
                 <Form.Field>
                     <label>Price</label>
                     <Input
-                    label="Rs per Kg"
+                    label="Rs per unit"
                     labelPosition="right"
                     value={this.state.price}
                     onChange={(event) =>

@@ -25,8 +25,12 @@ class ItemShow extends Component{
         "ForSaleByRetailer","PurchasedByConsumer"];
 
         const productData = await factory.methods.products(id).call();
+        const m_name = await factory.methods.ManufacturerName(productData.originManufacturerID).call();
+        const d_name = await factory.methods.DistributerName(productData.distributerID,0).call();
+        const d_location = await factory.methods.DistributerName(productData.distributerID,1).call();
+
         
-        return {address,productData, id, states};
+        return {address,productData, id, states,m_name,d_name,d_location};
     }
 
     onRequest = async () => {  
@@ -38,7 +42,7 @@ class ItemShow extends Component{
             });
 
             
-            Router.pushRoute(`/Retailer/${this.props.address}/${this.props.id}`);
+            Router.pushRoute(`/Retailer/${this.props.address}/viewPurchasedProducts`);
             this.setState({loading: false});
             
 
@@ -61,10 +65,13 @@ class ItemShow extends Component{
                     <h1> {this.props.productData.productName} </h1>
                     <br></br>           
                     <h3><b>Manufacturer Id:</b> {this.props.productData.originManufacturerID}</h3>
+                    <h3><b>Manufacturer :</b> {this.props.m_name}</h3>
                     <h3><b>Factory Location:</b> {this.props.productData.originFactory}</h3>
-                    <h3><b>Quantity Available:</b> {this.props.productData.quantityAvailable} kg.</h3>
-                    <h3><b>Price:</b> Rs. per Kg. {this.props.productData.pricePerUnit}</h3>
-
+                    <h3><b>Distributer Id:</b> {this.props.productData.distributerID}</h3>
+                    <h3><b>Distributer :</b> {this.props.d_name}</h3>
+                    <h3><b>Distributer Location :</b> {this.props.d_location}</h3>
+                    <h3><b>Quantity Available:</b> {this.props.productData.quantityAvailable} units</h3>
+                    <h3><b>Price:</b> Rs. {this.props.productData.pricePerUnit} per unit</h3>
                     <h3><b>Quantity Required: </b></h3>
                     <Input value={this.state.quantityRequired} onChange={(event) => this.setState({ quantityRequired: event.target.value })}/>
 

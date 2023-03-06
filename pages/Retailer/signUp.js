@@ -9,6 +9,8 @@ import {Link} from '../../routes';
 class SignUp extends Component {
     state = {
       address: "",
+      name: "",
+      location: "",
       errorMessage: "",
       loading: false,
     };
@@ -20,7 +22,7 @@ class SignUp extends Component {
       try {
         const accounts = await web3.eth.getAccounts();
         const val = await factory.methods
-          .addRetailer(this.state.address)
+          .addRetailer(this.state.address,this.state.name,this.state.location)
           .send({
             from: accounts[0],
           });
@@ -45,6 +47,26 @@ class SignUp extends Component {
                 value={this.state.address}
                 onChange={(event) =>
                   this.setState({ address: event.target.value })
+                }
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <label>Retailer's Name</label>
+              <Input
+                value={this.state.name}
+                onChange={(event) =>
+                  this.setState({ name: event.target.value })
+                }
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <label>Location</label>
+              <Input
+                value={this.state.location}
+                onChange={(event) =>
+                  this.setState({ location: event.target.value })
                 }
               />
             </Form.Field>

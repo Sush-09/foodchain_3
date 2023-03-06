@@ -28,7 +28,9 @@ class ItemList extends Component {
     renderItems() {
 
       const product_data = this.props.products.filter((product) => {
-        if (this.props.states[product.itemState]== "PurchasedByDistributor"){
+        // console.log(product.itemState);
+        // console.log(this.props.states[product.itemState])
+        if (this.props.states[product.itemState]== "ProducedByManufacturer"){
           return product;
       }
       });
@@ -36,10 +38,10 @@ class ItemList extends Component {
       const product_card = product_data.map((product) => {
         
           return {
-            href: `/Retailer/${this.props.address}/${product.f_id}`,
+            href: `/Distributer/${this.props.address}/${product.f_id}`,
             header: product.productName,
-            description: "Rs."+product.pricePerUnit+" per unit ",
-            meta: "Available: "+product.quantityAvailable+" units",
+            description: "Rs."+product.pricePerUnit+" per Kg ",
+            meta: "Available: "+product.quantityAvailable+" Kg",
             fluid: true,
           };
        
@@ -50,13 +52,13 @@ class ItemList extends Component {
       return (
         <Layout>
           <div> 
-            <Link route={`/Retailer/${this.props.address}/viewPurchasedProducts`}>
+            <Link route={`/Distributer/${this.props.address}/viewPurchasedProducts`}>
                   <a>
                     <Button primary floated="left" style={{ marginBottom: 10 }}>
                       Purchased Products
                     </Button>
                   </a>
-            </Link> 
+            </Link>
             <br></br><br></br>
             <h3> Available Products </h3> 
    

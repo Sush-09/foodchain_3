@@ -17,7 +17,7 @@ contract FoodSupplyChain {
         uint256 quantity;
         uint256 pricePerUnit; // Product Price per unit
         uint256 quantityAvailable;
-        //State itemState; // Product State as represented in the enum above
+        State itemState; // Product State as represented in the enum above
         // address manufacturerID;
         // uint256 FinalProductId;
     }
@@ -30,7 +30,7 @@ contract FoodSupplyChain {
         string productName; // Product Notes
         uint256 quantity;
         uint256 pricePerUnit; // Product Price per unit
-        //State itemState; // Product State as represented in the enum above
+        State itemState; // Product State as represented in the enum above
         uint256 FinalProductId;
     }
 
@@ -44,8 +44,8 @@ contract FoodSupplyChain {
         uint256 quantity;
         uint256 pricePerUnit; // Product Price
         uint256 quantityAvailable;
-        //State itemState; // Product State as represented in the enum above
-        // address distributerID;
+        State itemState; // Product State as represented in the enum above
+        address distributerID;
         // address retailerID;
     }
 
@@ -59,8 +59,8 @@ contract FoodSupplyChain {
         string productName; // Product Notes
         uint256 quantity;
         uint256 pricePerUnit; // Product Price
-        //State itemState; // Product State as represented in the enum above
-        // address distributerID;
+        State itemState; // Product State as represented in the enum above
+        address distributerID;
         // address retailerID;
     }
     
@@ -95,9 +95,13 @@ contract FoodSupplyChain {
 
 
     mapping(address => bool) public Farmers;
+    mapping(address => string) public FarmerName;
     mapping(address => bool) public Manufacturers;
+    mapping(address => string) public ManufacturerName;
     mapping(address => bool) public Distributers;
+    mapping(address => string[]) public DistributerName;
     mapping(address => bool) public Retailers;
+    mapping(address => string[]) public RetailerName;
     mapping (uint256 => Item) public items;
     mapping (uint256 => ItemPurchasedByManufacturer) public itemsPurchased;
     mapping(uint256 => FinalProduct) public products;
@@ -136,20 +140,26 @@ contract FoodSupplyChain {
 
 
     
-    function addFarmer(address accAdd) public restricted{
+    function addFarmer(address accAdd, string name) public restricted{
         Farmers[accAdd] = true;
+        FarmerName[accAdd] = name;
     } 
 
-    function addManufacturer(address accAdd) public restricted{
+    function addManufacturer(address accAdd, string name) public restricted{
         Manufacturers[accAdd] = true;
+        ManufacturerName[accAdd] = name;
     }
 
-    function addDistributer(address accAdd) public restricted{
+    function addDistributer(address accAdd, string name, string location) public restricted{
         Distributers[accAdd] = true;
+        DistributerName[accAdd].push(name);
+        DistributerName[accAdd].push(location);
     } 
 
-    function addRetailer(address accAdd) public restricted{
+    function addRetailer(address accAdd, string name, string location) public restricted{
         Retailers[accAdd] = true;
+        RetailerName[accAdd].push(name);
+        RetailerName[accAdd].push(location);
     } 
 
     function addItem(
@@ -161,7 +171,7 @@ contract FoodSupplyChain {
     ) public onlyFarmer {
         // address manufacturerID;
         // uint256 FinalProductId;
-        Item memory new_item = Item(item_id,msg.sender,originFarmName,productName,quantity,pricePerUnit,quantity);
+        Item memory new_item = Item(item_id,msg.sender,originFarmName,productName,quantity,pricePerUnit,quantity,State.ProduceByFarmer);
         items[item_id]=(new_item);
         item_list.push(new_item);
         item_id++;
@@ -178,7 +188,7 @@ contract FoodSupplyChain {
         //items[id].ownerID = msg.sender;
         itemsByManufacturer[msg.sender].push(itemsPurchasedId);
 
-        ItemPurchasedByManufacturer memory new_item = ItemPurchasedByManufacturer(id,msg.sender,items[id].originFarmerID,msg.sender,items[id].productName,quantity,items[id].pricePerUnit,FinalProductId);
+        ItemPurchasedByManufacturer memory new_item = ItemPurchasedByManufacturer(id,msg.sender,items[id].originFarmerID,msg.sender,items[id].productName,quantity,items[id].pricePerUnit,State.PurchasedByManufacturer,FinalProductId);
         itemsPurchased[itemsPurchasedId] = (new_item);
         itemsPurchased_list.push(new_item);
         itemsPurchasedId++;
@@ -207,19 +217,32 @@ contract FoodSupplyChain {
         uint256 quantity,
         uint256 productPrice
         ) public onlyManufacturer {
-            // address distrbuterID;
+           address distrbuterID;
             // address retailerID;
-            FinalProduct memory new_product = FinalProduct(finalItemId,originalId,msg.sender,originFactory,productName,quantity,productPrice,quantity);
+            uint256 i;
+            FinalProduct memory new_product = FinalProduct(finalItemId,originalId,msg.sender,originFactory,productName,quantity,productPrice,quantity,State.ProducedByManufacturer,distrbuterID);
             products[finalItemId]=(new_product);
             product_list.push(new_product);
             //items[originalId].FinalProductId = finalItemId;
+            for (i=0;i<itemsPurchasedId;i++){
+                if (itemsPurchased[i].id == originalId && itemsPurchased[i].manufacturerID==msg.sender){
+                    itemsPurchased[i].itemState = State.ProducedByManufacturer;
+                    itemsPurchased[i].FinalProductId = finalItemId;
+                }
+            }
             finalItemId++;
+    }
+
+    function purchasedByDistributer(uint256 f_id) public onlyDistributer{
+        require(products[f_id].itemState == State.ProducedByManufacturer);
+        products[f_id].itemState = State.PurchasedByDistributor;
+        products[f_id].distributerID = msg.sender;
     }
 
 
 
     function purchasedByRetailer(uint256 f_id, uint256 quantity) public onlyRetailer{
-        //require(products[f_id].itemState == State.ProducedByManufacturer);
+        require(products[f_id].itemState == State.PurchasedByDistributor);
 
         products[f_id].quantityAvailable = products[f_id].quantityAvailable - quantity;
         //products[f_id].itemState = State.PurchasedByRetailer;
@@ -227,12 +250,14 @@ contract FoodSupplyChain {
         //products[f_id].ownerID = msg.sender;
         itemsByRetailer[msg.sender].push(productsPurchasedId);
 
-        ProductPurchasedByRetailer memory new_product = ProductPurchasedByRetailer(f_id,products[f_id].originalId,msg.sender,products[f_id].originManufacturerID,msg.sender,products[f_id].originFactory,products[f_id].productName,quantity,products[f_id].pricePerUnit);
+        ProductPurchasedByRetailer memory new_product = ProductPurchasedByRetailer(f_id,products[f_id].originalId,msg.sender,products[f_id].originManufacturerID,msg.sender,products[f_id].originFactory,products[f_id].productName,quantity,products[f_id].pricePerUnit,State.PurchasedByRetailer,products[f_id].distributerID);
         productsPurchased[productsPurchasedId] = (new_product);
         productsPurchased_list.push(new_product);
         productsPurchasedId++;
         
     }
+
+
 
     
     

@@ -13,7 +13,7 @@ class CampaignNew extends Component{
         productName: "",
         price: "",
         loading: false,
-        errorMessage: "",
+        errorMessage: ""
     };
 
     static async getInitialProps(props) {

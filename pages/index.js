@@ -40,7 +40,7 @@ class ShowEntity extends Component {
             {
                 header: Distributer,
                 style: {overflowWrap: 'break-word'},
-                extra: [<Button basic color='blue'>Sign Up</Button> ,<Button basic color='green'>Sign In</Button>]
+                extra: [<Link route="/Distributer/signUp"><a><Button basic color='blue'>Sign Up</Button></a></Link> ,<Link route="/Distributer/signIn"><a><Button basic color='green'>Sign In</Button></a></Link>]
             },
             {
                 header: Retailer,

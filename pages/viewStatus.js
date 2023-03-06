@@ -6,7 +6,7 @@ import web3 from "../ethereum/web3";
 import { Router } from "../routes";
 import {Link} from '../routes';
 
-class SignIn extends Component {
+class ViewStatus extends Component {
     state = {
       id: "",
       errorMessage: "",
@@ -17,7 +17,10 @@ class SignIn extends Component {
       farmAddress: "",
       manufacturer: "",
       factoryAddress: "",
-      retailer: ""
+      distributer: "",
+      d_location: "",
+      retailer: "",
+      r_location: ""
     };
   
     onSubmit = async (event) => {
@@ -29,15 +32,25 @@ class SignIn extends Component {
         const finalProduct = await factory.methods.productsPurchased(this.state.id).call();
         const productId = finalProduct.f_id;
         const itemId = finalProduct.originalId;
-        
         const originalProduct = await factory.methods.items(itemId).call();
+        const f_name = await factory.methods.FarmerName(originalProduct.originFarmerID).call();
+        const m_name = await factory.methods.ManufacturerName(finalProduct.originManufacturerID).call();
+        const d_name = await factory.methods.DistributerName(finalProduct.distributerID,0).call();
+        const d_location= await factory.methods.DistributerName(finalProduct.distributerID,1).call();
+        const r_name = await factory.methods.RetailerName(finalProduct.retailerId,0).call();
+        const r_location = await factory.methods.RetailerName(finalProduct.retailerId,1).call();
+        
         this.setState({productName: finalProduct.productName});
         this.setState({rawProductName: originalProduct.productName});
-        this.setState({farmer: originalProduct.originFarmerID});
+        this.setState({farmer: f_name});
         this.setState({farmAddress: originalProduct.originFarmName});
-        this.setState({manufacturer: finalProduct.originManufacturerID});
+        this.setState({manufacturer: m_name});
         this.setState({factoryAddress: finalProduct.originFactory});
-        this.setState({retailer: finalProduct.retailerId});
+        this.setState({distributer: d_name});
+        this.setState({d_location: d_location});
+        this.setState({retailer: r_name});
+        this.setState({r_location: r_location});
+
 
       } catch (err) {
         this.setState({ errorMessage: err.message });
@@ -67,11 +80,14 @@ class SignIn extends Component {
 
           <h3><b>Product Name:</b> {this.state.productName}</h3>
           <h3><b>Raw Product Name: </b> {this.state.rawProductName}</h3>
-          <h3><b>farmer Id: </b> {this.state.farmer}</h3>
+          <h3><b>farmer : </b> {this.state.farmer}</h3>
           <h3><b>Farm Address: </b> {this.state.farmAddress}</h3>
-          <h3><b>Manufacturer Id: </b> {this.state.manufacturer}</h3>
+          <h3><b>Manufacturer : </b> {this.state.manufacturer}</h3>
           <h3><b>Factory Address: </b> {this.state.factoryAddress}</h3>
-          <h3><b>Retailer Id: </b> {this.state.retailer}</h3>
+          <h3><b>Distributer: </b> {this.state.distributer}</h3>
+          <h3><b>Distributer Address: </b> {this.state.d_location}</h3>
+          <h3><b>Retailer: </b> {this.state.retailer}</h3>          
+          <h3><b>Retailer Address: </b> {this.state.r_location}</h3>
 
           
 
@@ -80,5 +96,5 @@ class SignIn extends Component {
     }
   }
   
-  export default SignIn;
+  export default ViewStatus;
   

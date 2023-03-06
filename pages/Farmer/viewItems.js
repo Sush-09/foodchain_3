@@ -26,11 +26,10 @@ class ItemsByFarmer extends Component {
             return factory.methods.items(index).call();
           })
       );
-
-      
   
       return { items, item_length, address, states };
-    }
+    } 
+    
     renderItems() {
     const item_data = this.props.items.filter((item) => {
         if (item.originFarmerID == this.props.address){
@@ -53,21 +52,25 @@ class ItemsByFarmer extends Component {
       return (
         <Layout>
           <div> 
-            <h3> Items Added </h3>  
 
             <Link route={`/Farmer/${this.props.address}/new`}>
-            <a>
-              <Button
-                floated="right"
-                content="Add Item"
-                icon="add circle"
-                primary
-              />
-            </a>
-          </Link> 
+              <a>
+                <Button
+                  floated="left"
+                  content="Add Item"
+                  icon="add circle"
+                  primary
+                />
+              </a>
+            </Link>
+
+          <br></br><br></br>
+          <h3> Items Added </h3>  
+
+             
 
             {this.renderItems()}
-          </div>
+        </div>
         </Layout>
       );
     }

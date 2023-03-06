@@ -9,8 +9,9 @@ import {Link} from '../../routes';
 class SignUp extends Component {
     state = {
       address: "",
+      name: "",
       errorMessage: "",
-      loading: false,
+      loading: false
     };
   
     onSubmit = async (event) => {
@@ -20,7 +21,7 @@ class SignUp extends Component {
       try {
         const accounts = await web3.eth.getAccounts();
         const val = await factory.methods
-          .addManufacturer(this.state.address)
+          .addManufacturer(this.state.address,this.state.name)
           .send({
             from: accounts[0],
           });
@@ -48,6 +49,17 @@ class SignUp extends Component {
                 }
               />
             </Form.Field>
+
+            <Form.Field>
+              <label>Manufacturer's Name</label>
+              <Input
+                value={this.state.name}
+                onChange={(event) =>
+                  this.setState({ name: event.target.value })
+                }
+              />
+            </Form.Field>
+            
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button loading={this.state.loading} primary>
               Sign Up!

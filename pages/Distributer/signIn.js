@@ -6,10 +6,9 @@ import web3 from "../../ethereum/web3";
 import { Router } from "../../routes";
 import {Link} from '../../routes';
 
-class SignUp extends Component {
+class SignIn extends Component {
     state = {
       address: "",
-      name: "",
       errorMessage: "",
       loading: false,
     };
@@ -19,16 +18,17 @@ class SignUp extends Component {
       this.setState({ loading: true, errorMessage: "" });
   
       try {
-        const accounts = await web3.eth.getAccounts();
-        const val = await factory.methods
-          .addFarmer(this.state.address, this.state.name)
-          .send({
-            from: accounts[0],
-          });
-          
+        //const accounts = await web3.eth.getAccounts();
+        const val = await factory.methods.Distributers(this.state.address).call();
+          if (val==true){
+            Router.pushRoute(`/Distributer/${this.state.address}/viewItems`);
+          }
+         else{
             Router.pushRoute("/");
-         
-         } catch (err) {
+         }
+  
+        
+      } catch (err) {
         this.setState({ errorMessage: err.message });
       }
       this.setState({ loading: false });
@@ -37,10 +37,10 @@ class SignUp extends Component {
     render() {
       return (
         <Layout>
-          <h3>SignUp</h3>
+          <h3>SignIn</h3>
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
             <Form.Field>
-              <label>Farmer's Address</label>
+              <label>Distributer's Address</label>
               <Input
                 value={this.state.address}
                 onChange={(event) =>
@@ -48,20 +48,9 @@ class SignUp extends Component {
                 }
               />
             </Form.Field>
-
-            <Form.Field>
-              <label>Farmer's Name</label>
-              <Input
-                value={this.state.name}
-                onChange={(event) =>
-                  this.setState({ name: event.target.value })
-                }
-              />
-
-            </Form.Field>
-            < Message error header="Oops!" content={this.state.errorMessage} />
+            <Message error header="Oops!" content={this.state.errorMessage} />
             <Button loading={this.state.loading} primary>
-              Sign Up!
+              Sign In!
             </Button>
           </Form>
         </Layout>
@@ -69,5 +58,5 @@ class SignUp extends Component {
     }
   }
   
-  export default SignUp;
+  export default SignIn;
   
