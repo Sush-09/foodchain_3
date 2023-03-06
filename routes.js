@@ -1,7 +1,8 @@
 const routes = require('next-routes')();
 
 routes
-    .add('/viewStatus','/viewStatus')
+    .add('/viewStatus/:id','/viewStatus')
+    .add('/QRCode','/QRCode')
     .add('/statusTable','/statusTable')
     .add('/Manager/signInOrSignUp', '/Manager/signInOrSignUp')
     .add('/Manager/signIn','/Manager/signIn')

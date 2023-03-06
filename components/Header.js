@@ -18,6 +18,10 @@ const Header = () => {
 
             <Link route="/statusTable">  
              <a className="item">#</a>
+            </Link>
+
+            <Link route="/QRCode">  
+             <a className="item">QR</a>
             </Link>      
         </Menu.Menu>
         </Menu>

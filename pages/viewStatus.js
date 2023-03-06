@@ -22,6 +22,13 @@ class ViewStatus extends Component {
       retailer: "",
       r_location: ""
     };
+
+    static async getInitialProps(props){
+      const id = props.query.id;
+      return{ id };
+    }
+
+
   
     onSubmit = async (event) => {
       event.preventDefault();
@@ -29,7 +36,7 @@ class ViewStatus extends Component {
       
       try {
 
-        const finalProduct = await factory.methods.productsPurchased(this.state.id).call();
+        const finalProduct = await factory.methods.productsPurchased(this.props.id).call();
         const productId = finalProduct.f_id;
         const itemId = finalProduct.originalId;
         const originalProduct = await factory.methods.items(itemId).call();
@@ -63,7 +70,7 @@ class ViewStatus extends Component {
         <Layout>
           <h3>Product Status</h3>
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
-            <Form.Field>
+            {/* <Form.Field>
               <label>Product Id</label>
               <Input
                 value={this.state.id}
@@ -71,7 +78,7 @@ class ViewStatus extends Component {
                   this.setState({ id: event.target.value })
                 }
               />
-            </Form.Field>
+            </Form.Field> */}
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button loading={this.state.loading} primary>
               View!
