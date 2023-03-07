@@ -64,7 +64,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.items_purchased.map((item) => {
       if(item.id == item_id){
         return (
-          <a href="#"><b>{item.productName}</b><br/>Quantity: {item.quantity} kg.<br/><br/><br/></a>
+          <Link route={`/Status/${item_id}/${item.manufacturerID}/PurchasedByManufacturer`}><a><b>{item.productName}</b><br/>Quantity: {item.quantity} kg.<br/><br/><br/></a></Link>
         );
       }
     });
@@ -74,7 +74,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.products.map((product) => {
       if(product.originalId == item_id ){
         return (
-          <a href="#"><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/><br/><br/></a>
+          <Link route={`/Status/ProducedByManufacturer/${item_id}/${product.originManufacturerID}`}><a><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/><br/><br/></a></Link>
         );
       }
     });
@@ -84,7 +84,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.products.map((product) => {
       if(product.originalId == item_id && this.props.states[product.itemState]== "PurchasedByDistributor"){
         return (
-          <a href="#"><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/>Quantity Available:{product.quantityAvailable} units<br/><br/><br/></a>
+          <Link route={`/Status/PurchasedByDistributor/${item_id}/${product.originManufacturerID}`}><a><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/>Quantity Available:{product.quantityAvailable} units<br/><br/><br/></a></Link>
         );
       }
     });
@@ -94,7 +94,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.products_purchased.map((product) => {
       if(product.originalId == item_id){
         return (
-          <a href="#"><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/><br/><br/></a>
+          <Link route={`/Status/PurchasedByRetailer/${item_id}/${product.originManufacturerID}`}><a><b>{product.productName}</b><br/>Quantity: {product.quantity} units<br/><br/><br/></a></Link>
         );
       }
     });
@@ -105,7 +105,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.items.map((item) =>{
       return(
         <Table.Row>
-          <Table.Cell  positive><a href="#"><b>{item.productName}</b><br />Quantity: {item.quantity} kg.<br/>Quantity Available: {item.quantityAvailable} kg.</a></Table.Cell>
+          <Table.Cell  positive><Link route={`/Status/ProduceByFarmer/${item.id}`}><a><b>{item.productName}</b><br />Quantity: {item.quantity} kg.<br/>Quantity Available: {item.quantityAvailable} kg.</a></Link></Table.Cell>
           <Table.Cell negative>{this.RequestPurchasedItems(item.id)}</Table.Cell>
           <Table.Cell>{this.RequestProducts(item.id)}</Table.Cell>
           <Table.Cell negative>{this.ProductsDistributer(item.id)}</Table.Cell>

@@ -51,7 +51,7 @@ class SignUp extends Component {
               />
             </Form.Field>
             <Form.Field>
-              <label>Diatributer's Name</label>
+              <label>Distributer's Name</label>
               <Input
                 value={this.state.name}
                 onChange={(event) =>

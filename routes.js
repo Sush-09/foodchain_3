@@ -26,7 +26,12 @@ routes
     .add('/Distributer/signUp','/Distributer/signUp')
     .add("/Distributer/:address/viewItems","/Distributer/viewItems")
     .add("/Distributer/:address/viewPurchasedProducts","/Distributer/viewPurchasedProducts")
-    .add("/Distributer/:address/:id","/Distributer/item");
+    .add("/Distributer/:address/:id","/Distributer/item")
+    .add("/Status/ProduceByFarmer/:id","/Status/ProduceByFarmer")
+    .add("/Status/:id/:address/PurchasedByManufacturer","/Status/PurchasedByManufacturer")
+    .add("/Status/ProducedByManufacturer/:id/:address","/Status/ProducedByManufacturer")
+    .add("/Status/PurchasedByDistributor/:id/:address","/Status/PurchasedByDistributor")
+    .add("/Status/PurchasedByRetailer/:id/:address","/Status/PurchasedByRetailer");
 
 
 module.exports = routes;

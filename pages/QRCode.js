@@ -9,7 +9,8 @@ class QRCodeGenerate extends Component{
 
     state = {
         id: "",
-        url: "http://192.168.43.47:3000/viewStatus/",
+        url: "http://192.168.108.234:3000/viewStatus/",
+        url1:"http://192.168.43.47:3000/viewStatus/",
         text: ""
         // src: "",
         // errorMessage: "",
