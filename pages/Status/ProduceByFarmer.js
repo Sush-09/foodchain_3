@@ -61,9 +61,9 @@ class ProduceByFarmer extends Component {
                 <h2>{this.props.required_item.productName}</h2>
                 <h3>Farmer: {this.props.farmerName}</h3>
                 <h3>Farm Address: {this.props.required_item.originFarmName}</h3>
-                <h3>Quantity: {this.props.required_item.quantity} Kg</h3>
-                <h3>Quantity Available: {this.props.required_item.quantityAvailable} Kg</h3>
-                <h3>Price: Rs. {this.props.required_item.pricePerUnit} per kg.</h3>
+                <h3>Quantity Added: {this.props.required_item.quantity} {this.props.required_item.unit}</h3>
+                <h3>Quantity Available: {this.props.required_item.quantityAvailable} {this.props.required_item.unit}</h3>
+                <h3>Price: Rs. {this.props.required_item.pricePerUnit} per {this.props.required_item.unit}.</h3>
 
             </Layout>
         );

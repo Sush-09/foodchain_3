@@ -3,9 +3,9 @@ const Web3 = require('web3');
 const compiledFSC = require('./build/FoodSupplyChain.json');
 
 const provider = new HDWalletProvider(
-  'moment census surge remind pupil keep genius mixed release suffer airport minute',
+  '//mneumonic//',
   // remember to change this to your own phrase!
-  'https://goerli.infura.io/v3/5187fd9b46f14d98a57d5da7fd5b06c9'
+  'https://sepolia.infura.io/v3/71631c015b2d4eb8895355707333a880'
   // remember to change this to your own endpoint!
 );
 const web3 = new Web3(provider);

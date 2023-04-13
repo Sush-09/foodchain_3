@@ -87,8 +87,8 @@ class PurchasedByManufacturer extends Component {
                 <h3>Farmer: {this.props.farmerName}</h3>
                 <h3>Farm Address: {this.props.raw_item.originFarmName}</h3>
                 <h3>Manufacturer: {this.props.manufacturerName}</h3>
-                <h3>Quantity: {this.props.required_item[0].quantity} Kg</h3>
-                <h3>Price: Rs. {this.props.required_item[0].pricePerUnit} per kg.</h3>
+                <h3>Quantity: {this.props.required_item[0].quantity} {this.props.raw_item.unit}</h3>
+                <h3>Price: Rs. {this.props.required_item[0].pricePerUnit} per {this.props.raw_item.unit}</h3>
 
             </Layout>
         );

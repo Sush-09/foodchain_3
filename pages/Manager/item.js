@@ -67,8 +67,8 @@ class ItemShow extends Component{
                     <h3><b>Farmar Id:</b> {this.props.itemData.originFarmerID}</h3>
                     <h3><b>Farmar:</b> {this.props.name}</h3>
                     <h3><b>Farmar Location:</b> {this.props.itemData.originFarmName}</h3>
-                    <h3><b>Quantity Available:</b> {this.props.itemData.quantityAvailable} kg.</h3>
-                    <h3><b>Price:</b> Rs. {this.props.itemData.pricePerUnit}  per Kg</h3>
+                    <h3><b>Quantity Available:</b> {this.props.itemData.quantityAvailable} {this.props.itemData.unit}.</h3>
+                    <h3><b>Price:</b> Rs. {this.props.itemData.pricePerUnit}  per {this.props.itemData.unit}</h3>
                     
                     <h3><b>Quantity Required: </b></h3>
                     <Input value={this.state.quantityRequired} onChange={(event) => this.setState({ quantityRequired: event.target.value })}/>

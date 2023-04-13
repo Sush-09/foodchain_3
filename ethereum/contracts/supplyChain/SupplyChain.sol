@@ -18,6 +18,7 @@ contract FoodSupplyChain {
         uint256 pricePerUnit; // Product Price per unit
         uint256 quantityAvailable;
         State itemState; // Product State as represented in the enum above
+        string unit;
         // address manufacturerID;
         // uint256 FinalProductId;
     }
@@ -46,6 +47,7 @@ contract FoodSupplyChain {
         uint256 quantityAvailable;
         State itemState; // Product State as represented in the enum above
         address distributerID;
+       
         // address retailerID;
     }
 
@@ -166,12 +168,12 @@ contract FoodSupplyChain {
       string originFarmName,
       string productName,
       uint256 quantity,
-      uint256 pricePerUnit
-
+      uint256 pricePerUnit,
+      string unit
     ) public onlyFarmer {
         // address manufacturerID;
         // uint256 FinalProductId;
-        Item memory new_item = Item(item_id,msg.sender,originFarmName,productName,quantity,pricePerUnit,quantity,State.ProduceByFarmer);
+        Item memory new_item = Item(item_id,msg.sender,originFarmName,productName,quantity,pricePerUnit,quantity,State.ProduceByFarmer,unit);
         items[item_id]=(new_item);
         item_list.push(new_item);
         item_id++;
@@ -182,6 +184,7 @@ contract FoodSupplyChain {
     function purchasedByManufacturer(uint256 id, uint256 quantity) public onlyManufacturer{
         //require(items[id].itemState == State.ProduceByFarmer);
         uint256 FinalProductId;
+        require(quantity<items[id].quantityAvailable);
         items[id].quantityAvailable = items[id].quantityAvailable - quantity;
         //items[id].itemState = State.PurchasedByManufacturer;
         //items[id].manufacturerID = msg.sender;
@@ -243,6 +246,7 @@ contract FoodSupplyChain {
 
     function purchasedByRetailer(uint256 f_id, uint256 quantity) public onlyRetailer{
         require(products[f_id].itemState == State.PurchasedByDistributor);
+        require(quantity<products[f_id].quantityAvailable);
 
         products[f_id].quantityAvailable = products[f_id].quantityAvailable - quantity;
         //products[f_id].itemState = State.PurchasedByRetailer;

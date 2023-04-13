@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout';
-import { Form, Button, Input, Message } from 'semantic-ui-react';
+import { Form, Button, Input, Message, Radio } from 'semantic-ui-react';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import {Router} from '../../routes';
@@ -13,8 +13,13 @@ class CampaignNew extends Component{
         productName: "",
         price: "",
         loading: false,
-        errorMessage: ""
+        errorMessage: "",
+        label: ""
     };
+
+    handleChange = (e, { value }) => {
+        this.setState({ value, label: "Rs per "+value });
+    }
 
     static async getInitialProps(props) {
         const address = props.query.address;
@@ -32,7 +37,7 @@ class CampaignNew extends Component{
         try {
             const accounts = await web3.eth.getAccounts();
             await factory.methods
-                .addItem(farmAddress,productName,quantity,price)
+                .addItem(farmAddress,productName,quantity,price,this.state.value)
                 .send({
                     from: accounts[0]
             });
@@ -71,8 +76,11 @@ class CampaignNew extends Component{
                 </Form.Field>
                 <Form.Field>
                     <label>Quantity</label>
+                    <Radio label='dozen' name='radioGroup' value='dozen' checked={this.state.unit === 'dozen'} onChange={this.handleChange}/>
+                    <Radio label='Kg' name='radioGroup' value='Kg' checked={this.state.unit === 'Kg'} onChange={this.handleChange}/>
+                    <Radio label='liter' name='radioGroup' value='liter' checked={this.state.unit === 'liter'} onChange={this.handleChange}/>
                     <Input
-                    label="Kg"
+                    label={this.state.value}
                     labelPosition="right"
                     value={this.state.quantity}
                     onChange={(event) => this.setState({ quantity: event.target.value })}
@@ -81,7 +89,7 @@ class CampaignNew extends Component{
                 <Form.Field>
                     <label>Price</label>
                     <Input
-                    label="Rs per Kg"
+                    label={this.state.label}
                     labelPosition="right"
                     value={this.state.price}
                     onChange={(event) =>

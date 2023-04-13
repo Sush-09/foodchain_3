@@ -31,8 +31,8 @@ class ItemList extends Component {
           return {
             href: `/Manager/${this.props.address}/${item.id}`,
             header: item.productName,
-            description: "Rs."+item.pricePerUnit+" per Kg"  ,
-            meta: "Available: "+item.quantityAvailable+"Kg",
+            description: "Rs."+item.pricePerUnit+" per "+item.unit,
+            meta: "Available: "+item.quantityAvailable+" "+item.unit,
             fluid: true,
           };
        

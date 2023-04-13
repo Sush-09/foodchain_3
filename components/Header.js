@@ -12,12 +12,12 @@ const Header = () => {
             
 
         <Menu.Menu position="right">
-            <Link route="/viewStatus">  
+            {/* <Link route="/viewStatus">  
              <a className="item">View Status</a>
-            </Link>  
+            </Link>   */}
 
             <Link route="/statusTable">  
-             <a className="item">#</a>
+             <a className="item">View Status</a>
             </Link>
 
             <Link route="/QRCode">  

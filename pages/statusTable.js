@@ -64,7 +64,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.items_purchased.map((item) => {
       if(item.id == item_id){
         return (
-          <Link route={`/Status/${item_id}/${item.manufacturerID}/PurchasedByManufacturer`}><a><b>{item.productName}</b><br/>Quantity: {item.quantity} kg.<br/><br/><br/></a></Link>
+          <Link route={`/Status/${item_id}/${item.manufacturerID}/PurchasedByManufacturer`}><a><b>{item.productName}</b><br/>Quantity: {item.quantity} {item.unit}<br/><br/><br/></a></Link>
         );
       }
     });
@@ -105,7 +105,7 @@ class TableExampleSelectableCell extends Component{
     return this.props.items.map((item) =>{
       return(
         <Table.Row>
-          <Table.Cell  positive><Link route={`/Status/ProduceByFarmer/${item.id}`}><a><b>{item.productName}</b><br />Quantity: {item.quantity} kg.<br/>Quantity Available: {item.quantityAvailable} kg.</a></Link></Table.Cell>
+          <Table.Cell  positive><Link route={`/Status/ProduceByFarmer/${item.id}`}><a><b>{item.productName}</b><br />Quantity Added: {item.quantity} {item.unit}<br/>Quantity Available: {item.quantityAvailable} {item.unit}</a></Link></Table.Cell>
           <Table.Cell negative>{this.RequestPurchasedItems(item.id)}</Table.Cell>
           <Table.Cell>{this.RequestProducts(item.id)}</Table.Cell>
           <Table.Cell negative>{this.ProductsDistributer(item.id)}</Table.Cell>
